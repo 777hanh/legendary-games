@@ -34,7 +34,7 @@
 </script>
 
 <template>
-    <NuxtLayout>
+    <NuxtLayout name="none-header">
         <h1 class="text-3xl font-bold underline">Login Page</h1>
         <u-button
             @click="handleLogin"

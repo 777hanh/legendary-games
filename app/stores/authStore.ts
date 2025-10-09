@@ -2,6 +2,7 @@ import { defineStore, storeToRefs } from 'pinia';
 
 interface IUser {
     username: string;
+    avatar?: string;
 }
 
 export const useAuthStore = defineStore('auth', () => {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
     // Route: / (Home page - cần authentication)
     definePageMeta({
-        middleware: ['auth']
+        middleware: []
     });
 
     const authStore = useAuthStore();

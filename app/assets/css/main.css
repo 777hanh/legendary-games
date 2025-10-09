@@ -1,7 +1,11 @@
 @import 'tailwindcss';
 @import '@nuxt/ui';
 
-@theme {
-    --primary-color: #4f46e5; /* Indigo-600 */
-    --secondary-color: #ec4899; /* Pink-500 */
+:root {
+    --ui-primary: #d2691e;
+    --ui-secondary: #6b7280; /* gray-500 */
+    --ui-accent: #3b82f6; /* blue-500 */
+    --ui-background: white;
+    --ui-text: #f2f2f2;
+    --ui-border: #d1d5db; /* gray-300 */
 }
