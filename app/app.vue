@@ -8,7 +8,5 @@
 </script>
 <template>
     <!-- <scroll-animation /> -->
-    <NuxtLayout>
-        <NuxtPage />
-    </NuxtLayout>
+    <NuxtPage />
 </template>

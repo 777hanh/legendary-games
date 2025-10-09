@@ -18,8 +18,9 @@
         <header-app @height-change="handleHeaderHeightChange" />
 
         <!-- <div class="mt-[var(--header-height)]"><slot /></div> -->
-        <div class="container mx-auto"><slot /></div>
+        <div class="container mx-auto min-h-screen"><slot /></div>
 
         <!-- Footer -->
+        <footer-app />
     </template>
 </template>

@@ -8,6 +8,20 @@ export interface MenuItem {
     children?: MenuItem[];
 }
 
+export interface UserMenuAction {
+    label: string;
+    icon: string;
+    to?: string;
+    click?: string;
+}
+
+export interface FooterMenuItem {
+    title: string;
+    to?: string;
+    href?: string;
+    click?: () => void;
+}
+
 export const menuList: MenuItem[] = [
     {
         title: 'Home',
@@ -88,5 +102,38 @@ export const userMenuActions = [
         label: 'Logout',
         icon: 'i-heroicons-arrow-right-on-rectangle',
         click: 'logout'
+    }
+];
+
+export const footerMenuLeft: FooterMenuItem[] = [
+    {
+        title: 'About Legendary Game',
+        to: '/about'
+    },
+    {
+        title: 'Latest News',
+        to: '/news'
+    },
+    {
+        title: 'Privacy Policy',
+        to: '/privacy-policy'
+    },
+    {
+        title: 'Terms and Conditions',
+        to: '/terms'
+    }
+];
+export const footerMenuRight: FooterMenuItem[] = [
+    {
+        title: 'Sitemap',
+        href: '/sitemap.xml'
+    },
+    {
+        title: 'Legendary Services',
+        to: '/services'
+    },
+    {
+        title: 'Press Resources',
+        to: '/press-resources'
     }
 ];
