@@ -1,2 +1,7 @@
-@import "tailwindcss";
-@import "@nuxt/ui";
+@import 'tailwindcss';
+@import '@nuxt/ui';
+
+@theme {
+    --primary-color: #4f46e5; /* Indigo-600 */
+    --secondary-color: #ec4899; /* Pink-500 */
+}

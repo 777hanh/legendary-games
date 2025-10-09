@@ -1,7 +1,14 @@
-<script setup lang="ts"></script>
-~/components/ScrollAnimation
+<script setup lang="ts">
+    const commonStore = useCommonStore();
+    const { fetchAll } = commonStore;
+
+    onMounted(() => {
+        fetchAll();
+    });
+</script>
 <template>
-    <div>
-        <scroll-animation />
-    </div>
+    <!-- <scroll-animation /> -->
+    <NuxtLayout>
+        <NuxtPage />
+    </NuxtLayout>
 </template>
