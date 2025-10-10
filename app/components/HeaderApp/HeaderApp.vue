@@ -16,6 +16,7 @@
     const isNotificationOpen = ref(false);
     const isProfileOpen = ref(false);
     const isScrolled = ref(false);
+    const isHeaderVisible = ref(true);
 
     // State for hover dropdowns on desktop
     const openDropdownIndex = ref<number | null>(null);
@@ -34,6 +35,41 @@
     const notificationPanel = ref<HTMLElement | null>(null);
     const mobileMenuRef = ref<HTMLElement | null>(null);
     const burgerButtonRef = ref<HTMLElement | null>(null);
+
+    // Track scroll direction for auto-hide header
+    let lastScrollY = 0;
+    let ticking = false;
+
+    const handleScroll = () => {
+        const currentScrollY = window.scrollY;
+
+        // Show header when at top
+        if (currentScrollY < 10) {
+            isHeaderVisible.value = true;
+            isScrolled.value = false;
+        } else {
+            isScrolled.value = true;
+
+            // Hide header when scrolling down, show when scrolling up
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                // Scrolling down
+                isHeaderVisible.value = false;
+            } else if (currentScrollY < lastScrollY) {
+                // Scrolling up
+                isHeaderVisible.value = true;
+            }
+        }
+
+        lastScrollY = currentScrollY;
+        ticking = false;
+    };
+
+    const onScroll = () => {
+        if (!ticking) {
+            window.requestAnimationFrame(handleScroll);
+            ticking = true;
+        }
+    };
 
     // Set dropdown wrapper ref
     const setDropdownRef = (index: number, el: any) => {
@@ -162,6 +198,9 @@
 
     // Custom click outside for mobile menu that excludes burger button
     onMounted(() => {
+        // Setup scroll listener
+        window.addEventListener('scroll', onScroll, { passive: true });
+
         const handleClickOutside = (event: MouseEvent) => {
             const target = event.target as Node;
             const clickedInsideMenu = mobileMenuRef.value?.contains(target);
@@ -176,6 +215,7 @@
 
         onUnmounted(() => {
             document.removeEventListener('click', handleClickOutside);
+            window.removeEventListener('scroll', onScroll);
         });
     });
 
@@ -197,7 +237,10 @@
     <header
         ref="headerRef"
         class="app-header z-50 mx-auto w-full"
-        :class="{ 'is-scrolled': isScrolled }"
+        :class="{
+            'is-scrolled': isScrolled,
+            'header-hidden': !isHeaderVisible
+        }"
         data-header
     >
         <div class="container mx-auto px-4 py-3 md:px-6 lg:px-8">
@@ -539,7 +582,12 @@
         transition:
             background 0.4s ease,
             box-shadow 0.4s ease,
-            border-color 0.4s ease;
+            border-color 0.4s ease,
+            transform 0.3s ease-in-out;
+    }
+
+    .app-header.header-hidden {
+        transform: translateY(-100%);
     }
     .app-header.is-scrolled {
         background: rgba(10, 14, 20, 0.92);

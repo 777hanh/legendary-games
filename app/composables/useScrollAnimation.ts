@@ -30,39 +30,42 @@
  * });
  */
 
-import { useIntersectionObserver } from "@vueuse/core";
+import { useIntersectionObserver } from '@vueuse/core';
 
-export function useScrollAnimation(options?: { [key: string]: any }) {
-  const targetElement = ref<HTMLElement | null>(null);
-  const isVisible = ref(false);
+export function useScrollAnimation(
+    options?: { [key: string]: any },
+    targetElementProp?: HTMLElement | null
+) {
+    const targetElement = ref<HTMLElement | null>(targetElementProp || null);
+    const isVisible = ref(false);
 
-  const { stop } = useIntersectionObserver(
-    targetElement,
-    (entries) => {
-      const [entry] = entries;
+    const { stop } = useIntersectionObserver(
+        targetElement,
+        (entries) => {
+            const [entry] = entries;
 
-      if (entry && entry.isIntersecting) {
-        isVisible.value = true;
+            if (entry && entry.isIntersecting) {
+                isVisible.value = true;
 
-        if (options?.onEnter) {
-          options.onEnter();
+                if (options?.onEnter) {
+                    options.onEnter();
+                }
+
+                if (options?.once) {
+                    stop(); // Stop observing if we only want the animation to trigger once
+                }
+            } else if (entry && !entry.isIntersecting) {
+                isVisible.value = false;
+
+                if (options?.onExit) {
+                    options.onExit();
+                }
+            }
+        },
+        {
+            threshold: options?.threshold ?? 0.1, // Trigger when 10% of the element is visible
+            rootMargin: options?.rootMargin ?? '0px' // Margin around the root
         }
-
-        if (options?.once) {
-          stop(); // Stop observing if we only want the animation to trigger once
-        }
-      } else if (entry && !entry.isIntersecting) {
-        isVisible.value = false;
-
-        if (options?.onExit) {
-          options.onExit();
-        }
-      }
-    },
-    {
-      threshold: options?.threshold ?? 0.1, // Trigger when 10% of the element is visible
-      rootMargin: options?.rootMargin ?? "0px", // Margin around the root
-    }
-  );
-  return { targetElement, isVisible, stop };
+    );
+    return { targetElement, isVisible, stop };
 }
