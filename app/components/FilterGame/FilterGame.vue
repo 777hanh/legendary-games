@@ -60,7 +60,7 @@
 
 <template>
     <div
-        class="top flex items-center justify-between border-b border-gray-700 pb-4"
+        class="top container mx-auto flex items-center justify-between border-b border-gray-700 pb-4"
     >
         <!-- Filter -->
         <div class="filters flex space-x-4">

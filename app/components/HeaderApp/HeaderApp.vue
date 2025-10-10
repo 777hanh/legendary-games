@@ -45,7 +45,8 @@
         const currentScrollY = window.scrollY;
 
         // Show header when at top
-        if (currentScrollY < 10) {
+        if (currentScrollY < window.innerHeight * 0.7) {
+            // 70% of viewport height
             isHeaderVisible.value = true;
             isScrolled.value = false;
         } else {

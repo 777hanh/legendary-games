@@ -10,7 +10,7 @@
         <HeroSection />
 
         <!-- Content -->
-        <div class="container mx-auto py-8">
+        <div class="py-8">
             <!-- List Games -->
             <list-game />
 
