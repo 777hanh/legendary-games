@@ -1,22 +1,27 @@
 <script setup lang="ts">
     const emit = defineEmits(['update:filters']);
     import _ from 'lodash';
+    import type {
+        IFiltersGame,
+        statusGameBase,
+        categoryGameBase
+    } from '~/types';
 
-    const filters = ref({
+    const filters = ref<IFiltersGame>({
         search: '',
         category: 'all',
         status: 'top-game'
     });
 
-    const categories = ref([
-        { label: 'All', value: 'all' },
+    const categories = ref<{ label: string; value: categoryGameBase }[]>([
+        { label: 'Choose Category', value: 'all' },
         { label: 'Action', value: 'action' },
         { label: 'Adventure', value: 'adventure' },
         { label: 'RPG', value: 'rpg' },
         { label: 'Strategy', value: 'strategy' }
     ]);
 
-    const statuses = ref([
+    const statuses = ref<{ label: string; value: statusGameBase }[]>([
         { label: 'Top Games', value: 'top-game' },
         { label: 'Released', value: 'released' },
         { label: 'Upcoming', value: 'upcoming' }
@@ -55,7 +60,7 @@
 
 <template>
     <div
-        class="top flex items-center justify-between border-b border-gray-300 pb-4"
+        class="top flex items-center justify-between border-b border-gray-700 pb-4"
     >
         <!-- Filter -->
         <div class="filters flex space-x-4">
