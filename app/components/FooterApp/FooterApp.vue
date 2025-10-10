@@ -81,31 +81,16 @@
                     <h4
                         class="text-primary/50 mt-4 text-center text-xs md:mt-0 md:text-left"
                     >
-                        &copy; {{ new Date().getFullYear() }} Legendary Game.
-                        All rights reserved.
+                        Copyright &copy;
+                        {{ new Date().getFullYear() }} Legendary Games
                     </h4>
                 </div>
 
                 <!-- SUBSCRIBER -->
                 <div
-                    class="col-span-1 flex flex-col items-center justify-center space-y-4 md:col-span-1"
+                    class="col-span-1 flex flex-col items-start justify-start space-y-4 md:col-span-1"
                 >
-                    <h3 class="text-lg font-semibold">
-                        Subscribe to our Newsletter
-                    </h3>
-                    <form class="flex w-full max-w-md">
-                        <input
-                            type="email"
-                            placeholder="Enter your email"
-                            class="w-full rounded-l border border-gray-300 px-4 py-2 focus:outline-none"
-                        />
-                        <button
-                            type="submit"
-                            class="rounded-r bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-                        >
-                            Subscribe
-                        </button>
-                    </form>
+                    <SubscriberComponent />
                 </div>
             </div>
         </footer>

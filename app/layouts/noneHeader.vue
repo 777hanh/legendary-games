@@ -6,5 +6,12 @@
 <template>
     <loading-screen v-if="isGlobalLoading" />
 
-    <template v-else><slot /></template>
+    <template v-else>
+        <div class="container mx-auto">
+            <slot />
+        </div>
+
+        <!-- Footer -->
+        <FooterApp />
+    </template>
 </template>
