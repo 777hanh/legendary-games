@@ -3,6 +3,7 @@ import { routes } from './routes';
 export interface MenuItem {
     title: string;
     url?: string;
+    to?: string;
     scrollTo?: string;
     icon?: string;
     children?: MenuItem[];
@@ -24,8 +25,8 @@ export interface FooterMenuItem {
 
 export const menuList: MenuItem[] = [
     {
-        title: 'Home',
-        scrollTo: 'hero'
+        title: 'Games',
+        to: '/games'
     },
     {
         title: 'Tournament',
@@ -42,10 +43,6 @@ export const menuList: MenuItem[] = [
                 icon: 'i-tabler-plus'
             }
         ]
-    },
-    {
-        title: 'Games',
-        scrollTo: 'featured-games'
     },
     {
         title: 'Teams',
