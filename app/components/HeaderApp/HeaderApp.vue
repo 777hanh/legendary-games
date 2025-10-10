@@ -10,6 +10,7 @@
     }>();
 
     const authStore = useAuthStore();
+    const { logout } = authStore;
     const { user, isAuthenticated } = storeToRefs(authStore);
 
     const isMenuOpen = ref(false);
@@ -122,7 +123,8 @@
                 icon: child.icon,
                 click: () => {
                     if (child.url) navigateTo(child.url);
-                    if (child.scrollTo) scrollToSection(child.scrollTo);
+                    else if (child.to) useRouter().push(child.to);
+                    else if (child.scrollTo) scrollToSection(child.scrollTo);
                 }
             }))
         ];
@@ -150,6 +152,8 @@
     function handleMenuItemClick(item: MenuItem) {
         if (item.url) {
             navigateTo(item.url);
+        } else if (item.to) {
+            useRouter().push(item.to);
         } else if (item.scrollTo) {
             scrollToSection(item.scrollTo);
         }
@@ -179,10 +183,9 @@
 
     function handleUserAction(action: any) {
         if (action.click === 'logout') {
-            authStore.logout();
-            navigateTo('/login');
+            logout();
         } else if (action.to) {
-            navigateTo(action.to);
+            useRouter().push(action.to);
         }
         isProfileOpen.value = false;
     }
@@ -646,7 +649,7 @@
     /* Dropdown wrapper - ensure no gap */
     .dropdown-wrapper {
         /* Add extra padding to capture mouse events */
-        padding-bottom: 8px;
+        /* padding-bottom: 8px; */
     }
 
     /* Custom Dropdown Transitions */
