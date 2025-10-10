@@ -24,5 +24,12 @@ export default defineNuxtConfig({
             'components',
             'components/**/*'
         ]
+    },
+    colorMode: {
+        preference: 'dark', // luôn ưu tiên dark mode
+        fallback: 'dark', // nếu không xác định được thì vẫn dark
+        classSuffix: '', // không thêm "-dark" hay "-light" vào class
+        storageKey: 'color-mode', // tên key localStorage, tuỳ chọn
+        disableTransition: true // tắt hiệu ứng chuyển đổi
     }
 });
