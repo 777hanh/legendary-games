@@ -1,4 +1,11 @@
 <script setup lang="ts">
+    const props = defineProps({
+        noContainerHero: {
+            type: Boolean,
+            default: false
+        }
+    });
+
     const commonStore = useCommonStore();
     const { isGlobalLoading } = storeToRefs(commonStore);
 
@@ -18,7 +25,7 @@
         <header-app @height-change="handleHeaderHeightChange" />
 
         <!-- <div class="mt-[var(--header-height)]"><slot /></div> -->
-        <div class="container mx-auto min-h-screen"><slot /></div>
+        <div class="min-h-screen"><slot /></div>
 
         <!-- Footer -->
         <footer-app />

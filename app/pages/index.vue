@@ -11,7 +11,11 @@
 
 <template>
     <NuxtLayout name="default">
-        <div>
+        <!-- Hero section -->
+        <HeroSection />
+
+        <!-- Content -->
+        <div class="container mx-auto py-8">
             <h1 class="text-3xl font-bold underline">Home Page</h1>
             <p v-if="user" class="mt-4">Welcome, {{ user.username }}!</p>
 
