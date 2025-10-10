@@ -19,11 +19,11 @@
 
 <template>
     <div
-        class="flex w-full flex-col items-start justify-start space-y-4 md:col-span-2 md:space-y-6 md:space-x-6"
+        class="flex w-full flex-col items-center justify-start space-y-4 md:col-span-2 md:items-start md:space-y-6 md:space-x-6"
     >
-        <h3 class="text-lg font-semibold uppercase">Get Legendary News</h3>
+        <h3 class="text-lg font-bold uppercase">Get Legendary News</h3>
         <div
-            class="flex w-full flex-col items-start justify-start space-y-1 md:space-y-2"
+            class="flex w-full flex-col items-center justify-start space-y-1 md:items-start md:space-y-2"
         >
             <form
                 class="flex w-full max-w-md items-center border border-[gray-300] px-1 py-1 text-[gray-300] md:px-3 md:py-2"
